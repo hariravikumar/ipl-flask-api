@@ -237,13 +237,3 @@ def bowlerAPI(bowler, balls=bowler_data):
     }
     return json.dumps(data, cls=NpEncoder)
 
-def bowlerAPI1(bowler, balls=bowler_data):
-    df = balls[balls.innings.isin([1, 2])]  # Excluding Super overs
-    self_record = bowlerRecord(bowler, df=df)
-    TEAMS = matches.Team1.unique()
-    against = {team: bowlerVsTeam(bowler, team, df) for team in TEAMS}
-    data = {
-        bowler: {'all': self_record,
-                 'against': against}
-    }
-    return json.dumps(data, cls=NpEncoder)
